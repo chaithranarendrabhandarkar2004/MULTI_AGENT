@@ -1,0 +1,58 @@
+[
+  {
+    "id": "kb-1",
+    "name": "RefundPolicy.pdf",
+    "category": "policy",
+    "size": "14 KB",
+    "content": "Refund Policy of TechMart Electronics:\n- We offer a strict 30-day money-back guarantee for all purchases.\n- To qualify for a full refund, items must be returned in their original packaging, unopened, with all original accessories.\n- If a product is defective or damaged upon arrival, return shipping is completely free.\n- For non-defective returns (buyer's remorse), a 10% restocking fee applies, and the customer is responsible for return shipping costs.\n- Refund requests must be initiated through the website account portal or by emailing refunds@techmartelectronics.com.\n- Once we receive and inspect the item, refunds are processed within 5 to 7 business days to the original payment method.",
+    "chunksCount": 7
+  },
+  {
+    "id": "kb-2",
+    "name": "ShippingPolicy.pdf",
+    "category": "policy",
+    "size": "12 KB",
+    "content": "Shipping Policy and Guidelines:\n- Standard shipping takes 3-5 business days and is free for orders over $50.\n- Standard shipping for orders under $50 is a flat rate of $4.99.\n- Expedited 2-day shipping is available nationwide for a flat rate of $9.99.\n- Overnight shipping is available for urgent orders at a rate of $19.99.\n- Orders are processed and shipped within 24 hours on business days (Monday to Friday).\n- Tracking numbers are generated and emailed automatically as soon as the shipping label is scanned by the carrier.\n- We ship to the United States, Canada, and the United Kingdom. Custom duties for Canadian/UK shipments are paid by the customer.",
+    "chunksCount": 8
+  },
+  {
+    "id": "kb-3",
+    "name": "Warranty.pdf",
+    "category": "policy",
+    "size": "15 KB",
+    "content": "Warranty terms for TechMart Hardware:\n- All TechMart devices (SmartTV, RoboVac, SoundBar, EarBuds, SmartWatch) are covered by a 1-year limited warranty.\n- This warranty covers standard manufacturing defects in materials, assembly, and workmanship under normal consumer use.\n- The warranty strictly excludes: accidental damage (dropped devices, screen cracks, water/liquid immersion), cosmetic wear and tear, unauthorized repairs or self-modifications, and natural disasters.\n- Warranty claims require valid proof of purchase (receipt/invoice).\n- For claims, email warranty@techmartelectronics.com with your serial number and issue description. We will repair or replace the item.",
+    "chunksCount": 6
+  },
+  {
+    "id": "kb-4",
+    "name": "Products.pdf",
+    "category": "products",
+    "size": "24 KB",
+    "content": "Products Specifications & Catalog:\n1. SmartTV 4K (Model TV-55UHD): 55-inch display, Ultra HD resolution, HDR10, built-in smart assistant apps, 3x HDMI 2.1 ports. Price: $399.99. Status: In Stock.\n2. RoboVac X12 (Model RV-X12): Intelligent robotic vacuum. 2500Pa high suction power, active LiDAR mapping, custom zone cleaning, auto-docking, 120-minute lithium battery. Price: $249.99. Status: Low Stock.\n3. SoundBar Elite (Model SB-E21): 2.1 channel speaker bar, 150W peak power, wireless active subwoofer, Bluetooth 5.0, optical and HDMI ARC input. Price: $129.99. Status: In Stock.\n4. EarBuds Pro (Model EB-P5): Wireless active noise-cancelling (ANC) earbuds, IPX5 water resistance, smart touch controls, 30-hour total battery life with wireless charging case. Price: $79.99. Status: In Stock.\n5. SmartWatch 3 (Model SW-3): GPS-enabled smart watch. Features health/fitness trackers, persistent heart rate sensor, sleep analysis, 7-day battery life, notifications. Price: $99.99. Status: In Stock.",
+    "chunksCount": 1
+  },
+  {
+    "id": "kb-5",
+    "name": "Pricing.pdf",
+    "category": "pricing",
+    "size": "10 KB",
+    "content": "Subscription Tiers and Support Levels:\n- Basic Free Tier ($0/month): Includes standard email support (24-48 hours response time), self-help community guides, and standard tracking.\n- Premium Member ($14.99/month or $119.99/year): Includes priority 24/7 support access, free expedited shipping on all orders, extended 60-day return window, and a 5% discount on all physical product purchases.\n- Enterprise Support ($49.99/month per user): Dedicated support engineer, guaranteed 1-hour SLA response, customized installation assistance, custom firmware options, and free repair pickup.",
+    "chunksCount": 4
+  },
+  {
+    "id": "kb-6",
+    "name": "InstallationGuide.pdf",
+    "category": "manual",
+    "size": "18 KB",
+    "content": "TechMart Device Initial Installation Instructions:\n- RoboVac X12 Setup: Place the charging base flat on a hard floor against a wall with 1 meter clearance on both sides. Plug base into power. Place RoboVac on dock and charge for 4 hours. Download the TechMart App, tap 'Add Device', and follow prompts over 2.4GHz Wi-Fi (5GHz not supported).\n- SoundBar Elite Setup: Connect the SoundBar to your TV using the optical digital audio cable or HDMI ARC. Plug both the SoundBar and subwoofer into wall outlets. Power both on; they will automatically link wirelessly (the red syncing light on back of subwoofer will turn solid blue).",
+    "chunksCount": 3
+  },
+  {
+    "id": "kb-7",
+    "name": "UserManual.pdf",
+    "category": "manual",
+    "size": "20 KB",
+    "content": "TechMart General Operations Manual:\n- Account & Password Resets: If you cannot log in, click 'Forgot Password' on the sign-in screen. Enter your registered email to receive a password reset link. The reset link expires in 24 hours. Passwords must be at least 8 characters, with 1 uppercase and 1 number.\n- SmartWatch 3 Reset: To hard-reset the watch and erase all personal data, slide to Settings on the watch interface, choose 'System Settings', select 'Factory Reset', and confirm. This is non-reversible.",
+    "chunksCount": 3
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "Multi-Agent AI Customer Support Assistant using RAG",
+  "description": "An interactive capstone project featuring multi-agent query routing, semantic RAG retrieval, simulated sessions, and a live analytics dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

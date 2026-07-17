@@ -1,0 +1,576 @@
+[
+  {
+    "id": "c-101",
+    "userId": "u-john",
+    "userName": "John Doe",
+    "status": "resolved",
+    "createdAt": "2026-07-16T10:15:00-07:00",
+    "updatedAt": "2026-07-16T10:20:00-07:00",
+    "messages": [
+      {
+        "id": "m-101a",
+        "sender": "user",
+        "text": "I bought a RoboVac X12 and charged it for 4 hours but it won't connect to my Wi-Fi! Also, I was double charged on my invoice.",
+        "timestamp": "2026-07-16T10:15:00-07:00"
+      },
+      {
+        "id": "m-101b",
+        "sender": "assistant",
+        "text": "Hello Alice! I would be happy to help you with both your RoboVac Wi-Fi connection and your double charge issue.\n\n[Billing Agent Response]\nRegarding the billing error, I have analyzed your account details. It appears there was a duplicate processing flag on transaction invoice #2026-88. I have initiated a refund of $249.99 for the second charge, which will clear in 5-7 business days.\n\n[Technical Support Agent Response]\nFor your RoboVac X12, please note that the vacuum only connects to 2.4GHz Wi-Fi networks. If your router combines 2.4GHz and 5GHz, please split them or enable a guest network locked to 2.4GHz. Also, hold the power button for 3 seconds to trigger pairing mode.",
+        "timestamp": "2026-07-16T10:16:30-07:00",
+        "rating": 5,
+        "trace": {
+          "id": "tr-101",
+          "query": "I bought a RoboVac X12 and charged it for 4 hours but it won't connect to my Wi-Fi! Also, I was double charged on my invoice.",
+          "timestamp": "2026-07-16T10:15:00-07:00",
+          "sentiment": "negative",
+          "sentimentScore": -0.6,
+          "detectedIntent": "Billing + Technical Support",
+          "routedAgents": [
+            "Billing Agent",
+            "Technical Support Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "InstallationGuide.pdf",
+              "content": "- RoboVac X12 Setup: ... follow prompts over 2.4GHz Wi-Fi (5GHz not supported).",
+              "score": 0.89
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- Once we receive and inspect the item, refunds are processed within 5 to 7 business days.",
+              "score": 0.72
+            }
+          ],
+          "agentOutputs": {
+            "Billing Agent": "Duplicate charge on invoice #2026-88 identified. Refund of $249.99 initiated.",
+            "Technical Support Agent": "RoboVac X12 requires a 2.4GHz Wi-Fi. 5GHz is not supported. Hold sync for 3 seconds."
+          },
+          "finalResponse": "Hello Alice! I would be happy to help...",
+          "responseTimeMs": 1250,
+          "tokensUsed": 420
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-102",
+    "userId": "u-john",
+    "userName": "John Doe",
+    "status": "resolved",
+    "createdAt": "2026-07-16T11:02:00-07:00",
+    "updatedAt": "2026-07-16T11:05:00-07:00",
+    "messages": [
+      {
+        "id": "m-102a",
+        "sender": "user",
+        "text": "How much does the SmartWatch 3 cost and does it track heart rate?",
+        "timestamp": "2026-07-16T11:02:00-07:00"
+      },
+      {
+        "id": "m-102b",
+        "sender": "assistant",
+        "text": "Hello Bob! The SmartWatch 3 (Model SW-3) is priced at $99.99. It is fully equipped with built-in GPS and features continuous heart rate monitoring, sleep analysis, and fitness tracking. We currently have it in stock!",
+        "timestamp": "2026-07-16T11:03:10-07:00",
+        "rating": 5,
+        "trace": {
+          "id": "tr-102",
+          "query": "How much does the SmartWatch 3 cost and does it track heart rate?",
+          "timestamp": "2026-07-16T11:02:00-07:00",
+          "sentiment": "neutral",
+          "sentimentScore": 0.1,
+          "detectedIntent": "Product Information",
+          "routedAgents": [
+            "Product Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "Products.pdf",
+              "content": "- SmartWatch 3 (Model SW-3): GPS-enabled watch, heart rate sensor, price $99.99.",
+              "score": 0.95
+            }
+          ],
+          "agentOutputs": {
+            "Product Agent": "SmartWatch 3 is $99.99 and has GPS and continuous heart rate tracking."
+          },
+          "finalResponse": "Hello Bob! The SmartWatch 3...",
+          "responseTimeMs": 820,
+          "tokensUsed": 210
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-active-1784043218783",
+    "userId": "admin",
+    "userName": "admin",
+    "status": "active",
+    "createdAt": "2026-07-14T15:33:38.783Z",
+    "updatedAt": "2026-07-14T15:49:16.139Z",
+    "messages": [
+      {
+        "id": "m-user-1784043218785",
+        "sender": "user",
+        "text": "Wi-Fi keeps dropping on my RoboVac X12 and I see a duplicate charge of $249.99 on my account!",
+        "timestamp": "2026-07-14T15:33:38.785Z"
+      },
+      {
+        "id": "m-assistant-1784043218785",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. I have coordinated with our specialized internal agents to address your concerns:\n\n**Billing Agent**:\nBased on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.\n\n**Technical Support Agent**:\nPlease check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.\n\nPlease let me know if there's anything else I can clarify or if we should initiate a support ticket.",
+        "timestamp": "2026-07-14T15:33:38.785Z",
+        "trace": {
+          "id": "tr-1784043218781",
+          "query": "Wi-Fi keeps dropping on my RoboVac X12 and I see a duplicate charge of $249.99 on my account!",
+          "timestamp": "2026-07-14T15:33:38.781Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "Billing Agent & Technical Support Agent",
+          "routedAgents": [
+            "Billing Agent",
+            "Technical Support Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "InstallationGuide.pdf",
+              "content": "- RoboVac X12 Setup: Place the charging base flat on a hard floor against a wall with 1 meter clearance on both sides. Plug base into power. Place RoboVac on dock and charge for 4 hours. Download the TechMart App, tap 'Add Device', and follow prompts over 2.4GHz Wi-Fi (5GHz not supported).",
+              "score": 0.75
+            },
+            {
+              "fileName": "Products.pdf",
+              "content": "- Products Specifications & Catalog:\n1. SmartTV 4K (Model TV-55UHD): 55-inch display, Ultra HD resolution, HDR10, built-in smart assistant apps, 3x HDMI 2.1 ports. Price: $399.99. Status: In Stock.\n2. RoboVac X12 (Model RV-X12): Intelligent robotic vacuum. 2500Pa high suction power, active LiDAR mapping, custom zone cleaning, auto-docking, 120-minute lithium battery. Price: $249.99. Status: Low Stock.\n3. SoundBar Elite (Model SB-E21): 2.1 channel speaker bar, 150W peak power, wireless active subwoofer, Bluetooth 5.0, optical and HDMI ARC input. Price: $129.99. Status: In Stock.\n4. EarBuds Pro (Model EB-P5): Wireless active noise-cancelling (ANC) earbuds, IPX5 water resistance, smart touch controls, 30-hour total battery life with wireless charging case. Price: $79.99. Status: In Stock.\n5. SmartWatch 3 (Model SW-3): GPS-enabled smart watch. Features health/fitness trackers, persistent heart rate sensor, sleep analysis, 7-day battery life, notifications. Price: $99.99. Status: In Stock.",
+              "score": 0.5
+            },
+            {
+              "fileName": "Warranty.pdf",
+              "content": "- All TechMart devices (SmartTV, RoboVac, SoundBar, EarBuds, SmartWatch) are covered by a 1-year limited warranty.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "Billing Agent": "Based on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.",
+            "Technical Support Agent": "Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. I have coordinated with our specialized internal agents to address your concerns:\n\n**Billing Agent**:\nBased on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.\n\n**Technical Support Agent**:\nPlease check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.\n\nPlease let me know if there's anything else I can clarify or if we should initiate a support ticket.",
+          "responseTimeMs": 369,
+          "tokensUsed": 409
+        }
+      },
+      {
+        "id": "m-user-1784043547444",
+        "sender": "user",
+        "text": "I paid yesterday but Premium is still locked.",
+        "timestamp": "2026-07-14T15:39:07.444Z"
+      },
+      {
+        "id": "m-assistant-1784043547444",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+        "timestamp": "2026-07-14T15:39:07.444Z",
+        "trace": {
+          "id": "tr-1784043547425",
+          "query": "I paid yesterday but Premium is still locked.",
+          "timestamp": "2026-07-14T15:39:07.425Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "FAQ Agent",
+          "routedAgents": [
+            "FAQ Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "ShippingPolicy.pdf",
+              "content": "- We ship to the United States, Canada, and the United Kingdom. Custom duties for Canadian/UK shipments are paid by the customer.",
+              "score": 0.25
+            },
+            {
+              "fileName": "Pricing.pdf",
+              "content": "- Premium Member ($14.99/month or $119.99/year): Includes priority 24/7 support access, free expedited shipping on all orders, extended 60-day return window, and a 5% discount on all physical product purchases.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "FAQ Agent": "TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+          "responseTimeMs": 33,
+          "tokensUsed": 376
+        }
+      },
+      {
+        "id": "m-user-1784043805198",
+        "sender": "user",
+        "text": "I want to return my hardware, but I lost my receipts. Help!",
+        "timestamp": "2026-07-14T15:43:25.199Z"
+      },
+      {
+        "id": "m-assistant-1784043805199",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+        "timestamp": "2026-07-14T15:43:25.199Z",
+        "trace": {
+          "id": "tr-1784043805179",
+          "query": "I want to return my hardware, but I lost my receipts. Help!",
+          "timestamp": "2026-07-14T15:43:25.179Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "FAQ Agent",
+          "routedAgents": [
+            "FAQ Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- To qualify for a full refund, items must be returned in their original packaging, unopened, with all original accessories.",
+              "score": 0.25
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- If a product is defective or damaged upon arrival, return shipping is completely free.",
+              "score": 0.25
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- For non-defective returns (buyer's remorse), a 10% restocking fee applies, and the customer is responsible for return shipping costs.",
+              "score": 0.25
+            },
+            {
+              "fileName": "Pricing.pdf",
+              "content": "- Premium Member ($14.99/month or $119.99/year): Includes priority 24/7 support access, free expedited shipping on all orders, extended 60-day return window, and a 5% discount on all physical product purchases.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "FAQ Agent": "TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+          "responseTimeMs": 21,
+          "tokensUsed": 410
+        }
+      },
+      {
+        "id": "m-user-1784044156138",
+        "sender": "user",
+        "text": "Wi-Fi keeps dropping on my RoboVac X12 and I see a duplicate charge of $249.99 on my account!",
+        "timestamp": "2026-07-14T15:49:16.139Z"
+      },
+      {
+        "id": "m-assistant-1784044156138",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. I have coordinated with our specialized internal agents to address your concerns:\n\n**Billing Agent**:\nBased on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.\n\n**Technical Support Agent**:\nPlease check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.\n\nPlease let me know if there's anything else I can clarify or if we should initiate a support ticket.",
+        "timestamp": "2026-07-14T15:49:16.139Z",
+        "trace": {
+          "id": "tr-1784044156134",
+          "query": "Wi-Fi keeps dropping on my RoboVac X12 and I see a duplicate charge of $249.99 on my account!",
+          "timestamp": "2026-07-14T15:49:16.135Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "Billing Agent & Technical Support Agent",
+          "routedAgents": [
+            "Billing Agent",
+            "Technical Support Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "InstallationGuide.pdf",
+              "content": "- RoboVac X12 Setup: Place the charging base flat on a hard floor against a wall with 1 meter clearance on both sides. Plug base into power. Place RoboVac on dock and charge for 4 hours. Download the TechMart App, tap 'Add Device', and follow prompts over 2.4GHz Wi-Fi (5GHz not supported).",
+              "score": 0.75
+            },
+            {
+              "fileName": "Products.pdf",
+              "content": "- Products Specifications & Catalog:\n1. SmartTV 4K (Model TV-55UHD): 55-inch display, Ultra HD resolution, HDR10, built-in smart assistant apps, 3x HDMI 2.1 ports. Price: $399.99. Status: In Stock.\n2. RoboVac X12 (Model RV-X12): Intelligent robotic vacuum. 2500Pa high suction power, active LiDAR mapping, custom zone cleaning, auto-docking, 120-minute lithium battery. Price: $249.99. Status: Low Stock.\n3. SoundBar Elite (Model SB-E21): 2.1 channel speaker bar, 150W peak power, wireless active subwoofer, Bluetooth 5.0, optical and HDMI ARC input. Price: $129.99. Status: In Stock.\n4. EarBuds Pro (Model EB-P5): Wireless active noise-cancelling (ANC) earbuds, IPX5 water resistance, smart touch controls, 30-hour total battery life with wireless charging case. Price: $79.99. Status: In Stock.\n5. SmartWatch 3 (Model SW-3): GPS-enabled smart watch. Features health/fitness trackers, persistent heart rate sensor, sleep analysis, 7-day battery life, notifications. Price: $99.99. Status: In Stock.",
+              "score": 0.5
+            },
+            {
+              "fileName": "Warranty.pdf",
+              "content": "- All TechMart devices (SmartTV, RoboVac, SoundBar, EarBuds, SmartWatch) are covered by a 1-year limited warranty.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "Billing Agent": "Based on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.",
+            "Technical Support Agent": "Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. I have coordinated with our specialized internal agents to address your concerns:\n\n**Billing Agent**:\nBased on TechMart's policy, we process refunds within 5-7 business days to the original payment method. For any potential double charges or duplicate invoices, we offer a full manual reconciliation to reverse extra drafts immediately.\n\n**Technical Support Agent**:\nPlease check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.\n\nPlease let me know if there's anything else I can clarify or if we should initiate a support ticket.",
+          "responseTimeMs": 5,
+          "tokensUsed": 267
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-sim-1784043255267-556",
+    "userId": "u-sim-1726",
+    "userName": "John Doe",
+    "status": "resolved",
+    "createdAt": "2026-07-14T15:12:33.179Z",
+    "updatedAt": "2026-07-14T15:34:15.267Z",
+    "messages": [
+      {
+        "id": "m-user-1784043255267",
+        "sender": "user",
+        "text": "Can you list the battery life of the wireless earbuds and smartwatch?",
+        "timestamp": "2026-07-14T15:34:15.267Z"
+      },
+      {
+        "id": "m-as-1784043255267",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+        "timestamp": "2026-07-14T15:34:15.267Z",
+        "rating": 4,
+        "trace": {
+          "id": "tr-1784043255266-579",
+          "query": "Can you list the battery life of the wireless earbuds and smartwatch?",
+          "timestamp": "2026-07-14T15:34:15.266Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "FAQ Agent",
+          "routedAgents": [
+            "FAQ Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "Products.pdf",
+              "content": "- Products Specifications & Catalog:\n1. SmartTV 4K (Model TV-55UHD): 55-inch display, Ultra HD resolution, HDR10, built-in smart assistant apps, 3x HDMI 2.1 ports. Price: $399.99. Status: In Stock.\n2. RoboVac X12 (Model RV-X12): Intelligent robotic vacuum. 2500Pa high suction power, active LiDAR mapping, custom zone cleaning, auto-docking, 120-minute lithium battery. Price: $249.99. Status: Low Stock.\n3. SoundBar Elite (Model SB-E21): 2.1 channel speaker bar, 150W peak power, wireless active subwoofer, Bluetooth 5.0, optical and HDMI ARC input. Price: $129.99. Status: In Stock.\n4. EarBuds Pro (Model EB-P5): Wireless active noise-cancelling (ANC) earbuds, IPX5 water resistance, smart touch controls, 30-hour total battery life with wireless charging case. Price: $79.99. Status: In Stock.\n5. SmartWatch 3 (Model SW-3): GPS-enabled smart watch. Features health/fitness trackers, persistent heart rate sensor, sleep analysis, 7-day battery life, notifications. Price: $99.99. Status: In Stock.",
+              "score": 1
+            },
+            {
+              "fileName": "Warranty.pdf",
+              "content": "- All TechMart devices (SmartTV, RoboVac, SoundBar, EarBuds, SmartWatch) are covered by a 1-year limited warranty.",
+              "score": 0.25
+            },
+            {
+              "fileName": "InstallationGuide.pdf",
+              "content": "- SoundBar Elite Setup: Connect the SoundBar to your TV using the optical digital audio cable or HDMI ARC. Plug both the SoundBar and subwoofer into wall outlets. Power both on; they will automatically link wirelessly (the red syncing light on back of subwoofer will turn solid blue).",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "FAQ Agent": "TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+          "responseTimeMs": 502,
+          "tokensUsed": 320
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-sim-1784043255270-956",
+    "userId": "u-sim-3975",
+    "userName": "Emma Watson",
+    "status": "resolved",
+    "createdAt": "2026-07-14T05:20:45.151Z",
+    "updatedAt": "2026-07-14T15:34:15.270Z",
+    "messages": [
+      {
+        "id": "m-user-1784043255270",
+        "sender": "user",
+        "text": "The Soundbar subwoofer is blinking red and doesn't connect to my speaker.",
+        "timestamp": "2026-07-14T15:34:15.270Z"
+      },
+      {
+        "id": "m-as-1784043255270",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.",
+        "timestamp": "2026-07-14T15:34:15.270Z",
+        "rating": 4,
+        "trace": {
+          "id": "tr-1784043255270-917",
+          "query": "The Soundbar subwoofer is blinking red and doesn't connect to my speaker.",
+          "timestamp": "2026-07-14T15:34:15.270Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "Technical Support Agent",
+          "routedAgents": [
+            "Technical Support Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "InstallationGuide.pdf",
+              "content": "- SoundBar Elite Setup: Connect the SoundBar to your TV using the optical digital audio cable or HDMI ARC. Plug both the SoundBar and subwoofer into wall outlets. Power both on; they will automatically link wirelessly (the red syncing light on back of subwoofer will turn solid blue).",
+              "score": 0.75
+            },
+            {
+              "fileName": "Products.pdf",
+              "content": "- Products Specifications & Catalog:\n1. SmartTV 4K (Model TV-55UHD): 55-inch display, Ultra HD resolution, HDR10, built-in smart assistant apps, 3x HDMI 2.1 ports. Price: $399.99. Status: In Stock.\n2. RoboVac X12 (Model RV-X12): Intelligent robotic vacuum. 2500Pa high suction power, active LiDAR mapping, custom zone cleaning, auto-docking, 120-minute lithium battery. Price: $249.99. Status: Low Stock.\n3. SoundBar Elite (Model SB-E21): 2.1 channel speaker bar, 150W peak power, wireless active subwoofer, Bluetooth 5.0, optical and HDMI ARC input. Price: $129.99. Status: In Stock.\n4. EarBuds Pro (Model EB-P5): Wireless active noise-cancelling (ANC) earbuds, IPX5 water resistance, smart touch controls, 30-hour total battery life with wireless charging case. Price: $79.99. Status: In Stock.\n5. SmartWatch 3 (Model SW-3): GPS-enabled smart watch. Features health/fitness trackers, persistent heart rate sensor, sleep analysis, 7-day battery life, notifications. Price: $99.99. Status: In Stock.",
+              "score": 0.5
+            },
+            {
+              "fileName": "Warranty.pdf",
+              "content": "- All TechMart devices (SmartTV, RoboVac, SoundBar, EarBuds, SmartWatch) are covered by a 1-year limited warranty.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "Technical Support Agent": "Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.",
+          "responseTimeMs": 501,
+          "tokensUsed": 305
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-sim-1784043255296-682",
+    "userId": "u-sim-4309",
+    "userName": "Charlie Day",
+    "status": "resolved",
+    "createdAt": "2026-07-14T04:18:12.350Z",
+    "updatedAt": "2026-07-14T15:34:15.296Z",
+    "messages": [
+      {
+        "id": "m-user-1784043255296",
+        "sender": "user",
+        "text": "I want to return my hardware, but I lost my receipts. Help!",
+        "timestamp": "2026-07-14T15:34:15.296Z"
+      },
+      {
+        "id": "m-as-1784043255296",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+        "timestamp": "2026-07-14T15:34:15.296Z",
+        "rating": 4,
+        "trace": {
+          "id": "tr-1784043255296-790",
+          "query": "I want to return my hardware, but I lost my receipts. Help!",
+          "timestamp": "2026-07-14T15:34:15.296Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "FAQ Agent",
+          "routedAgents": [
+            "FAQ Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- To qualify for a full refund, items must be returned in their original packaging, unopened, with all original accessories.",
+              "score": 0.25
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- If a product is defective or damaged upon arrival, return shipping is completely free.",
+              "score": 0.25
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- For non-defective returns (buyer's remorse), a 10% restocking fee applies, and the customer is responsible for return shipping costs.",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "FAQ Agent": "TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+          "responseTimeMs": 501,
+          "tokensUsed": 313
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-sim-1784043255315-4",
+    "userId": "u-sim-6210",
+    "userName": "Sarah Connor",
+    "status": "resolved",
+    "createdAt": "2026-07-14T04:38:48.223Z",
+    "updatedAt": "2026-07-14T15:34:15.315Z",
+    "messages": [
+      {
+        "id": "m-user-1784043255315",
+        "sender": "user",
+        "text": "Do you ship your smart television to Canada?",
+        "timestamp": "2026-07-14T15:34:15.315Z"
+      },
+      {
+        "id": "m-as-1784043255315",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+        "timestamp": "2026-07-14T15:34:15.315Z",
+        "rating": 4,
+        "trace": {
+          "id": "tr-1784043255315-326",
+          "query": "Do you ship your smart television to Canada?",
+          "timestamp": "2026-07-14T15:34:15.315Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "FAQ Agent",
+          "routedAgents": [
+            "FAQ Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- If a product is defective or damaged upon arrival, return shipping is completely free.",
+              "score": 0.25
+            },
+            {
+              "fileName": "RefundPolicy.pdf",
+              "content": "- For non-defective returns (buyer's remorse), a 10% restocking fee applies, and the customer is responsible for return shipping costs.",
+              "score": 0.25
+            },
+            {
+              "fileName": "ShippingPolicy.pdf",
+              "content": "- Shipping Policy and Guidelines:",
+              "score": 0.25
+            }
+          ],
+          "agentOutputs": {
+            "FAQ Agent": "TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. TechMart standard shipping is 3-5 days and is free on orders above $50. Standard returns are accepted within 30 days of shipment receipt, subject to a 10% restocking fee if not defective.",
+          "responseTimeMs": 500,
+          "tokensUsed": 221
+        }
+      }
+    ]
+  },
+  {
+    "id": "c-sim-1784043255331-270",
+    "userId": "u-sim-4592",
+    "userName": "Bruce Wayne",
+    "status": "resolved",
+    "createdAt": "2026-07-14T04:40:36.714Z",
+    "updatedAt": "2026-07-14T15:34:15.331Z",
+    "messages": [
+      {
+        "id": "m-user-1784043255331",
+        "sender": "user",
+        "text": "I ordered yesterday but my premium discount did not get applied to my RoboVac!",
+        "timestamp": "2026-07-14T15:34:15.331Z"
+      },
+      {
+        "id": "m-as-1784043255331",
+        "sender": "assistant",
+        "text": "Thank you for contacting TechMart Electronics Support. Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.",
+        "timestamp": "2026-07-14T15:34:15.331Z",
+        "rating": 5,
+        "trace": {
+          "id": "tr-1784043255331-730",
+          "query": "I ordered yesterday but my premium discount did not get applied to my RoboVac!",
+          "timestamp": "2026-07-14T15:34:15.331Z",
+          "sentiment": "neutral",
+          "sentimentScore": 0,
+          "detectedIntent": "Technical Support Agent",
+          "routedAgents": [
+            "Technical Support Agent"
+          ],
+          "retrievedChunks": [
+            {
+              "fileName": "Pricing.pdf",
+              "content": "- Premium Member ($14.99/month or $119.99/year): Includes priority 24/7 support access, free expedited shipping on all orders, extended 60-day return window, and a 5% discount on all physical product purchases.",
+              "score": 0.5
+            }
+          ],
+          "agentOutputs": {
+            "Technical Support Agent": "Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network."
+          },
+          "finalResponse": "Thank you for contacting TechMart Electronics Support. Please check that your TechMart device is on a level surface and plugged in. If experiencing connectivity problems with devices like the RoboVac X12, remember that only 2.4GHz Wi-Fi networks are compatible; dual-band routers may require a split network.",
+          "responseTimeMs": 500,
+          "tokensUsed": 279
+        }
+      }
+    ]
+  }
+]
