@@ -61,9 +61,7 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Overview Cards styled like Natural Tones */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Card 1: Total Conversations */}
         <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-natural-400 mb-1">Total Conversations</p>
@@ -82,7 +80,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
           </div>
         </div>
 
-        {/* Card 2: Average CSAT */}
         <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-natural-400 mb-1">Customer CSAT Score</p>
@@ -105,7 +102,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
           </div>
         </div>
 
-        {/* Card 3: Avg Response Time */}
         <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-natural-400 mb-1">Response Latency</p>
@@ -121,7 +117,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
           </div>
         </div>
 
-        {/* Card 4: Orchestration Efficiency */}
         <div className="bg-natural-100 p-6 rounded-[32px] border border-natural-300 shadow-sm flex items-center justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-natural-700 mb-1">RAG Resolution Rate</p>
@@ -138,9 +133,7 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
         </div>
       </div>
 
-      {/* Visual Analytics Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Chart 1: Agent Usage Distribution */}
         <div className="lg:col-span-2 bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -163,7 +156,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
                 />
                 <Bar dataKey="calls" radius={[6, 6, 0, 0]}>
                   {analytics.agentDistribution.map((entry, index) => {
-                    // map dynamic colors to custom natural palette
                     const naturalColors = ['#8C9E7E', '#A3B18A', '#5D6D4E', '#6B705C', '#344E41'];
                     const color = naturalColors[index % naturalColors.length];
                     return (
@@ -176,7 +168,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
           </div>
         </div>
 
-        {/* Chart 2: Customer Sentiment Breakdown */}
         <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex flex-col justify-between">
           <div>
             <h4 className="font-bold text-natural-900 text-sm">Customer Sentiment Trend</h4>
@@ -231,7 +222,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
         </div>
       </div>
 
-      {/* Trace Explorer Accordion Feed */}
       <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
@@ -291,7 +281,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
 
               return (
                 <div key={trace.id} className={`transition duration-150 ${isExpanded ? 'bg-natural-50/50' : 'hover:bg-natural-50/20'}`}>
-                  {/* Header Row */}
                   <div 
                     className="p-4 flex items-center justify-between cursor-pointer"
                     onClick={() => setExpandedTraceId(isExpanded ? null : trace.id)}
@@ -328,10 +317,8 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
                     </div>
                   </div>
 
-                  {/* Expanded Orchestration Journey Detail */}
                   {isExpanded && (
                     <div className="px-5 pb-5 pt-2 border-t border-natural-200 bg-natural-50/20 grid grid-cols-1 lg:grid-cols-12 gap-5 text-xs">
-                      {/* Left Block: Routing & RAG Chunks */}
                       <div className="lg:col-span-5 space-y-4">
                         <div className="bg-white p-4 rounded-2xl border border-natural-200 shadow-sm space-y-2">
                           <h5 className="font-bold text-natural-800 flex items-center gap-1 text-xs">
@@ -371,7 +358,6 @@ export default function Dashboard({ analytics, onSelectQuery, onReset }: Dashboa
                         </div>
                       </div>
 
-                      {/* Right Block: Specialized Agent Output & Aggregator */}
                       <div className="lg:col-span-7 space-y-4">
                         <div className="bg-white p-4 rounded-2xl border border-natural-200 shadow-sm space-y-2">
                           <h5 className="font-bold text-natural-800 flex items-center gap-1 text-xs">
