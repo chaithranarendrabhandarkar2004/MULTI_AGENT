@@ -20,7 +20,6 @@ const JWT_SECRET = process.env.JWT_SECRET || "techmart_orchestrator_secret_key_2
 
 app.use(express.json());
 
-// Initialize Gemini SDK with telemetry header
 let ai: GoogleGenAI | null = null;
 if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "MY_GEMINI_API_KEY") {
   ai = new GoogleGenAI({
@@ -33,12 +32,7 @@ if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "MY_GEMINI_API_
   });
 }
 
-// Multer upload config for PDFs
-const upload = multer({ limits: { fileSize: 10 * 1024 * 1024 } }); // 10MB limit
-
-// ----------------------------------------------------
-// JWT Authentication Middleware
-// ----------------------------------------------------
+const upload = multer({ limits: { fileSize: 10 * 1024 * 1024 } });
 
 function authenticateToken(req: any, res: any, next: any) {
   const authHeader = req.headers['authorization'];
@@ -52,10 +46,6 @@ function authenticateToken(req: any, res: any, next: any) {
     next();
   });
 }
-
-// ----------------------------------------------------
-// Default Seeding Data
-// ----------------------------------------------------
 
 const PRESET_KNOWLEDGE_FILES = [
   {
@@ -226,7 +216,6 @@ const PRESET_CONVERSATIONS: any[] = [
   }
 ];
 
-// Seed preset files and default credentials
 async function seedDatabase(db: IDatabaseAdapter) {
   try {
     const existingFiles = await db.getFiles();
@@ -248,8 +237,7 @@ async function seedDatabase(db: IDatabaseAdapter) {
         let idx = 1;
         for (const p of paragraphs) {
           const cleanText = p.startsWith("- ") ? p : "- " + p;
-          
-          // Pre-generate embedding if AI key is active
+
           let embedding: number[] = [];
           if (ai) {
             const emb = await getEmbedding(ai, cleanText);
@@ -279,7 +267,6 @@ async function seedDatabase(db: IDatabaseAdapter) {
       console.log("🌱 Seeding default conversations complete.");
     }
 
-    // Seed default admin user for quick logins
     const adminUser = await db.getUserByUsername("admin");
     if (!adminUser) {
       console.log("🌱 Creating default 'admin' user (password: admin123)...");
@@ -294,10 +281,6 @@ async function seedDatabase(db: IDatabaseAdapter) {
     console.error("❌ Failed database seeding:", err);
   }
 }
-
-// ----------------------------------------------------
-// Analytics Processor
-// ----------------------------------------------------
 
 async function getAnalyticsSummary(db: IDatabaseAdapter) {
   const conversations = await db.getConversations();
@@ -386,10 +369,6 @@ async function getAnalyticsSummary(db: IDatabaseAdapter) {
     volumeTimeline
   };
 }
-
-// ----------------------------------------------------
-// Natural Language Processing & Orchestration Fallbacks
-// ----------------------------------------------------
 
 function fallbackIntentDetection(text: string) {
   const query = text.toLowerCase();
@@ -482,10 +461,6 @@ function fallbackResponseGenerator(query: string, intent: string, routedAgents: 
   };
 }
 
-// ----------------------------------------------------
-// AUTHENTICATION ENDPOINTS
-// ----------------------------------------------------
-
 app.post("/api/auth/register", async (req: any, res: any) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -539,16 +514,10 @@ app.post("/api/auth/login", async (req: any, res: any) => {
   }
 });
 
-// ----------------------------------------------------
-// PROTECTED API ENDPOINTS
-// ----------------------------------------------------
-
-// Health Check (Public)
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", geminiActive: !!ai });
 });
 
-// Fetch Knowledge Base files
 app.get("/api/knowledge-base", authenticateToken, async (req, res) => {
   try {
     const db = await connectDB();
@@ -564,7 +533,6 @@ app.get("/api/knowledge-base", authenticateToken, async (req, res) => {
   }
 });
 
-// Semantic Vector Search Sandbox Endpoint
 app.post("/api/knowledge-base/search", authenticateToken, async (req, res) => {
   const { query } = req.body;
   if (!query) return res.status(400).json({ error: "Missing query parameter." });
@@ -572,8 +540,7 @@ app.post("/api/knowledge-base/search", authenticateToken, async (req, res) => {
   try {
     const db = await connectDB();
     const chunks = await db.getChunks();
-    
-    // Perform Cosine Similarity / Keyword Search
+
     const searchResults = await searchVectorStore(query, chunks, ai, 5);
 
     res.json({
@@ -586,7 +553,6 @@ app.post("/api/knowledge-base/search", authenticateToken, async (req, res) => {
   }
 });
 
-// Text-based Document Upload (Copy-Paste)
 app.post("/api/knowledge-base/upload", authenticateToken, async (req: any, res: any) => {
   const { name, content, category } = req.body;
   if (!name || !content || !category) {
@@ -637,7 +603,6 @@ app.post("/api/knowledge-base/upload", authenticateToken, async (req: any, res: 
   }
 });
 
-// Real PDF File Upload Ingestion
 app.post("/api/knowledge-base/upload-file", authenticateToken, upload.single("file"), async (req: any, res: any) => {
   try {
     const file = req.file;
@@ -666,15 +631,13 @@ app.post("/api/knowledge-base/upload-file", authenticateToken, upload.single("fi
 
     const db = await connectDB();
     const fileId = `kb-custom-${Date.now()}`;
-    
-    // Split paragraphs into chunks
+
     const paragraphs = textContent
       .split(/\n\s*\n/)
       .map(p => p.trim())
       .filter(p => p.length > 20);
 
     if (paragraphs.length === 0) {
-      // Fallback: split by line
       const lines = textContent.split("\n").map(l => l.trim()).filter(l => l.length > 20);
       paragraphs.push(...lines);
     }
@@ -718,7 +681,6 @@ app.post("/api/knowledge-base/upload-file", authenticateToken, upload.single("fi
   }
 });
 
-// Fetch Analytics Summary
 app.get("/api/analytics", authenticateToken, async (req, res) => {
   try {
     const db = await connectDB();
@@ -729,11 +691,10 @@ app.get("/api/analytics", authenticateToken, async (req, res) => {
   }
 });
 
-// Submit Chat Simulator Message
 app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
   const { query } = req.body;
   const username = req.user.username;
-  const userId = req.user.username; // Bind conversation to logged-in user
+  const userId = req.user.username;
 
   if (!query) {
     return res.status(400).json({ error: "Query is required" });
@@ -743,11 +704,9 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
   const db = await connectDB();
 
   try {
-    // 1. Fetch chunks and retrieve top matches using Vector search
     const allChunks = await db.getChunks();
     const retrievedChunks = await searchVectorStore(query, allChunks, ai, 4);
 
-    // Initial default trace
     let trace: any = {
       id: `tr-${Date.now()}`,
       query,
@@ -766,7 +725,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
     };
 
     if (ai) {
-      // 1. Intent Detection
       const intentPrompt = `You are a high-performance customer service Orchestrator. Analyze the query: "${query}".
       Determine:
       1. Primary Customer Intent.
@@ -813,7 +771,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
       trace.sentimentScore = intentData.sentimentScore;
       trace.routedAgents = intentData.routedAgents?.length > 0 ? intentData.routedAgents : ["FAQ Agent"];
 
-      // 2. Persona-based Agent Execution
       const contextText = retrievedChunks.map(c => `[From Document: ${c.fileName}]: ${c.content}`).join("\n");
       const agentsPrompt = `You are simulated specialized AI Agents. Generate responses for the query: "${query}".
       Relevant Company Context Chunks:
@@ -841,7 +798,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
 
       trace.agentOutputs = JSON.parse(agentsResponse.text || "{}");
 
-      // 3. Aggregate Synthesis
       const aggregatorPrompt = `You are the Customer Support Orchestrator and Response Aggregator.
       Assemble a final, cohesive, unified customer response.
       The customer's name is "${username}".
@@ -862,7 +818,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
 
       trace.finalResponse = aggregatorResponse.text || "Could not synthesize agent outputs.";
     } else {
-      // Fallback
       const fbClass = fallbackIntentDetection(query);
       trace.detectedIntent = fbClass.detectedIntent;
       trace.sentiment = fbClass.sentiment;
@@ -877,7 +832,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
     trace.responseTimeMs = Date.now() - start;
     trace.tokensUsed = Math.floor(Math.random() * 200) + 250;
 
-    // Persist message in Conversation History
     let conv = await db.getActiveConversationByUser(userId);
     if (!conv) {
       conv = {
@@ -911,8 +865,7 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
     };
 
     const updatedMessages = [...conv.messages, userMsg, assistantMsg];
-    
-    // Auto-escalation trigger
+
     let status = conv.status;
     if (trace.sentiment === "negative" && trace.sentimentScore < -0.7) {
       status = "escalated";
@@ -937,7 +890,6 @@ app.post("/api/chat", authenticateToken, async (req: any, res: any) => {
   }
 });
 
-// Provide Conversation Feedback (CSAT rating)
 app.post("/api/chat/feedback", authenticateToken, async (req, res) => {
   const { conversationId, messageId, rating } = req.body;
   if (!conversationId || !messageId || !rating) {
@@ -976,7 +928,6 @@ app.post("/api/chat/feedback", authenticateToken, async (req, res) => {
   }
 });
 
-// Run AI-Simulated Batch
 app.post("/api/simulation/run", authenticateToken, async (req, res) => {
   const sampleQueries = [
     { name: "John Doe", query: "Can you list the battery life of the wireless earbuds and smartwatch?" },
@@ -1027,7 +978,6 @@ app.post("/api/simulation/run", authenticateToken, async (req, res) => {
 
     const allChunks = await db.getChunks();
 
-    // Process each query
     for (const sim of simulationList) {
       const simUserId = `u-sim-${Math.floor(Math.random() * 9000) + 1000}`;
       const start = Date.now();
@@ -1099,7 +1049,6 @@ app.post("/api/simulation/run", authenticateToken, async (req, res) => {
   }
 });
 
-// Reset simulation data
 app.post("/api/simulation/reset", authenticateToken, async (req, res) => {
   try {
     const db = await connectDB();
@@ -1110,10 +1059,6 @@ app.post("/api/simulation/reset", authenticateToken, async (req, res) => {
     res.status(500).json({ error: "Failed to reset simulation." });
   }
 });
-
-// ----------------------------------------------------
-// Mounting Vite / Build Pipelines
-// ----------------------------------------------------
 
 async function startServer() {
   const db = await connectDB();
