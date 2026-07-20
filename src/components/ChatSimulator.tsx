@@ -82,9 +82,7 @@ export default function ChatSimulator({
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 animate-fade-in h-[calc(100vh-180px)]">
-      {/* LEFT COLUMN: Customer Chat Window (7/12 cols) */}
       <div className="xl:col-span-7 bg-white rounded-[32px] border border-natural-200 shadow-sm flex flex-col h-full overflow-hidden">
-        {/* Chat Header & Active Simulation Profile selector */}
         <div className="p-4 border-b border-natural-200 bg-natural-100/60 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 bg-natural-500 rounded-full animate-pulse" />
@@ -109,7 +107,6 @@ export default function ChatSimulator({
           </div>
         </div>
 
-        {/* Message Thread Display Area */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-natural-50/20">
           {messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center max-w-sm mx-auto space-y-3">
@@ -151,7 +148,6 @@ export default function ChatSimulator({
                         <p key={i} className={i > 0 ? 'mt-2' : ''}>{para}</p>
                       ))}
 
-                      {/* Display CSAT Stars Picker on the very last assistant message */}
                       {!isUser && !msg.rating && index === messages.length - 1 && (
                         <div className="mt-4 pt-3 border-t border-natural-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <span className="text-[10px] text-natural-500 font-bold">Was this response helpful?</span>
@@ -170,15 +166,13 @@ export default function ChatSimulator({
                         </div>
                       )}
 
-                      {/* Confirmed CSAT Score */}
                       {!isUser && msg.rating && (
                         <div className="mt-3 pt-2 border-t border-natural-100 flex items-center gap-1.5 text-[10px] text-natural-700 font-bold bg-natural-100 px-2.5 py-1 rounded-xl w-max border border-natural-200">
                           <Star className="w-3.5 h-3.5 fill-natural-500 text-natural-500" /> Rated {msg.rating} / 5.0 Helpful
                         </div>
                       )}
                     </div>
-
-                    {/* Button to click and pull the trace for this historical message */}
+                    
                     {hasTrace && (
                       <button 
                         onClick={() => setActiveTrace(msg.trace || null)}
@@ -218,7 +212,6 @@ export default function ChatSimulator({
           <div ref={chatBottomRef} />
         </div>
 
-        {/* Suggested presets for easy demo queries */}
         {messages.length === 0 && (
           <div className="p-4 border-t border-natural-200 bg-natural-100/40 space-y-2">
             <span className="text-[10px] text-natural-500 uppercase tracking-[0.1em] font-extrabold block">Select a Demonstration query:</span>
@@ -236,7 +229,6 @@ export default function ChatSimulator({
           </div>
         )}
 
-        {/* Typing Form Input */}
         <form onSubmit={handleSubmit} className="p-3 border-t border-natural-200 bg-white flex gap-2">
           <input 
             type="text" 
@@ -256,9 +248,7 @@ export default function ChatSimulator({
         </form>
       </div>
 
-      {/* RIGHT COLUMN: Live System Trace Console (5/12 cols) - Styled with Forest dark theme */}
       <div className="xl:col-span-5 bg-forest rounded-[32px] border border-[#2D3025] shadow-xl flex flex-col h-full overflow-hidden text-[#E8E6E0] font-mono text-[11px]">
-        {/* Terminal Header */}
         <div className="p-4 border-b border-[#2D3025] bg-[#2D3025] flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Cpu className="w-4 h-4 text-[#A3B18A]" />
@@ -269,7 +259,6 @@ export default function ChatSimulator({
           </span>
         </div>
 
-        {/* Terminal Body */}
         <div className="flex-1 p-5 overflow-y-auto space-y-5 bg-forest">
           {!activeTrace ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-[#A3B18A] py-12">
@@ -279,7 +268,6 @@ export default function ChatSimulator({
             </div>
           ) : (
             <div className="space-y-4">
-              {/* Step 1: Intent & Sentiment */}
               <div className="space-y-1.5 border-b border-[#2D3025]/40 pb-3">
                 <div className="flex items-center gap-2 text-[#D4D9C7] font-bold">
                   <span className="opacity-50">1.</span>
@@ -308,7 +296,6 @@ export default function ChatSimulator({
                 </div>
               </div>
 
-              {/* Step 2: Agent Routing Checklist */}
               <div className="space-y-1.5 border-b border-[#2D3025]/40 pb-3">
                 <div className="flex items-center gap-2 text-[#D4D9C7] font-bold">
                   <span className="opacity-50">2.</span>
@@ -327,7 +314,6 @@ export default function ChatSimulator({
                 </div>
               </div>
 
-              {/* Step 3: RAG Retrieval */}
               <div className="space-y-1.5 border-b border-[#2D3025]/40 pb-3">
                 <div className="flex items-center gap-2 text-[#D4D9C7] font-bold">
                   <span className="opacity-50">3.</span>
@@ -352,7 +338,6 @@ export default function ChatSimulator({
                 </div>
               </div>
 
-              {/* Step 4: Individual Agent Responses */}
               <div className="space-y-1.5 border-b border-[#2D3025]/40 pb-3">
                 <div className="flex items-center gap-2 text-[#D4D9C7] font-bold">
                   <span className="opacity-50">4.</span>
@@ -371,7 +356,6 @@ export default function ChatSimulator({
                 </div>
               </div>
 
-              {/* Step 5: Aggregator Synthesis */}
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2 text-[#8C9E7E] font-bold">
                   <span className="opacity-50">5.</span>
@@ -386,7 +370,6 @@ export default function ChatSimulator({
           )}
         </div>
 
-        {/* Console Status Footer */}
         {activeTrace && (
           <div className="p-3 bg-[#2D3025] border-t border-[#3D4035] flex items-center justify-between text-[10px] text-slate-400">
             <span>Trace Session: {activeTrace.id}</span>
