@@ -26,7 +26,6 @@ export default function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [user, setUser] = useState<{ username: string } | null>(null);
 
-  // Authentication UI tabs
   const [authTab, setAuthTab] = useState<'login' | 'register'>('login');
   const [authUsername, setAuthUsername] = useState('');
   const [authPassword, setAuthPassword] = useState('');
@@ -44,7 +43,6 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [geminiActive, setGeminiActive] = useState(false);
 
-  // Decode token and fetch initial data on mount/token change
   useEffect(() => {
     if (token) {
       try {
@@ -73,7 +71,6 @@ export default function App() {
     setErrorMessage('');
   };
 
-  // Helper function to make authenticated requests
   const authFetch = async (url: string, options: RequestInit = {}) => {
     const headers = {
       ...options.headers,
@@ -109,7 +106,6 @@ export default function App() {
     }
   };
 
-  // Handle Login and Registration
   const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!authUsername.trim() || !authPassword.trim()) return;
@@ -148,12 +144,10 @@ export default function App() {
     }
   };
 
-  // Submit User Message in Simulator
   const handleSendMessage = async (text: string, userProfile: { name: string; id: string }) => {
     setIsLoadingChat(true);
     setErrorMessage('');
-    
-    // Add User Message Locally immediately
+
     const userMsg: Message = {
       id: `m-user-${Date.now()}`,
       sender: 'user',
@@ -192,7 +186,6 @@ export default function App() {
     }
   };
 
-  // Submit Rating Feedback for dynamic CSAT calculations
   const handleProvideFeedback = async (messageId: string, rating: number) => {
     const activeConvId = messages.length > 0 ? messages[messages.length - 1].trace?.id : null;
     const assistantMsg = messages.find(m => m.id === messageId);
@@ -223,7 +216,6 @@ export default function App() {
     }
   };
 
-  // Upload Custom Document (Text or PDF)
   const handleAddDocument = async (docOrFormData: any) => {
     try {
       const isFormData = docOrFormData instanceof FormData;
@@ -247,7 +239,6 @@ export default function App() {
     }
   };
 
-  // Run Batch Simulation of Customer Support Conversations
   const handleRunBatchSimulation = async () => {
     setIsSimulatingBatch(true);
     try {
@@ -263,7 +254,6 @@ export default function App() {
     }
   };
 
-  // Reset Metrics to Preset Demo Data
   const handleResetSimulatorData = async () => {
     try {
       const res = await authFetch('/api/simulation/reset', { method: 'POST' });
@@ -282,11 +272,9 @@ export default function App() {
     setActiveTab('chat');
   };
 
-  // Render Authentication screen if not logged in
   if (!token) {
     return (
       <div className="min-h-screen bg-natural-100 flex flex-col justify-center items-center p-4 font-sans text-natural-800 relative overflow-hidden">
-        {/* Decorative background shapes */}
         <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] rounded-full bg-[#8C9E7E]/10 blur-3xl" />
         <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] rounded-full bg-[#5D6D4E]/10 blur-3xl" />
 
@@ -303,7 +291,6 @@ export default function App() {
             </p>
           </div>
 
-          {/* Tab selectors */}
           <div className="flex bg-natural-100 p-1.5 rounded-2xl border border-natural-200/50">
             <button
               onClick={() => { setAuthTab('login'); setAuthError(''); setAuthSuccess(''); }}
@@ -393,7 +380,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-natural-50 flex flex-col font-sans text-natural-800">
-      {/* Top Banner Navigation */}
       <header className="bg-white border-b border-natural-200 px-6 py-4 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 bg-natural-500 text-white rounded-xl flex items-center justify-center shadow-sm">
@@ -409,7 +395,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Engine Active Status indicators */}
         <div className="flex items-center gap-4">
           <div className={`hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold ${
             geminiActive 
@@ -438,9 +423,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main App Layout Grid */}
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        {/* Left Side Tab Navigation Menu */}
         <nav className="md:w-60 bg-natural-100/70 border-r border-natural-200 p-4 shrink-0 flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible">
           <div className="hidden md:block mb-3 px-3">
             <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-natural-400">Navigation</h3>
@@ -494,7 +477,6 @@ export default function App() {
             <span>Simulation Center</span>
           </button>
 
-          {/* Helper panel about AI Studio injects */}
           <div className="hidden md:block mt-auto bg-[#8C9E7E] rounded-2xl p-4 text-white">
             <p className="text-[10px] opacity-80 mb-1 font-bold uppercase tracking-wider">Weekly Insight</p>
             <p className="text-xs font-serif italic leading-relaxed">
@@ -503,7 +485,6 @@ export default function App() {
           </div>
         </nav>
 
-        {/* Right Area: Dynamic View Content Panels */}
         <main className="flex-1 p-6 overflow-y-auto bg-natural-50">
           {errorMessage && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl text-xs flex items-center gap-2">
