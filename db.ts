@@ -2,10 +2,6 @@ import mongoose, { Schema, Document } from "mongoose";
 import fs from "fs";
 import path from "path";
 
-// ----------------------------------------------------
-// Database Interfaces
-// ----------------------------------------------------
-
 export interface IUser {
   username: string;
   passwordHash: string;
@@ -48,10 +44,6 @@ export interface IConversation {
   updatedAt: string;
   messages: IMessage[];
 }
-
-// ----------------------------------------------------
-// Mongoose Schema Definitions
-// ----------------------------------------------------
 
 const UserSchema = new Schema<IUser & Document>({
   username: { type: String, required: true, unique: true },
@@ -101,27 +93,19 @@ const MongoKBFileModel = mongoose.model<IKBFile & Document>("KBFile", KBFileSche
 const MongoKBChunkModel = mongoose.model<IKBChunk & Document>("KBChunk", KBChunkSchema);
 const MongoConversationModel = mongoose.model<IConversation & Document>("Conversation", ConversationSchema);
 
-// ----------------------------------------------------
-// Database Adapter Interface
-// ----------------------------------------------------
-
 export interface IDatabaseAdapter {
   isMongo: boolean;
-  
-  // Users
+ 
   getUserByUsername(username: string): Promise<IUser | null>;
   createUser(user: Omit<IUser, "createdAt">): Promise<IUser>;
-  
-  // Files
+
   getFiles(): Promise<IKBFile[]>;
   createFile(file: IKBFile): Promise<IKBFile>;
-  
-  // Chunks
+
   getChunks(): Promise<IKBChunk[]>;
   createChunk(chunk: IKBChunk): Promise<IKBChunk>;
   createChunks(chunks: IKBChunk[]): Promise<IKBChunk[]>;
-  
-  // Conversations
+
   getConversations(): Promise<IConversation[]>;
   getConversationById(id: string): Promise<IConversation | null>;
   getActiveConversationByUser(userId: string): Promise<IConversation | null>;
@@ -129,10 +113,6 @@ export interface IDatabaseAdapter {
   updateConversation(id: string, updates: Partial<IConversation>): Promise<IConversation | null>;
   clearConversationsExceptPreset(presetIds: string[]): Promise<void>;
 }
-
-// ----------------------------------------------------
-// Mongoose / MongoDB Adapter Implementation
-// ----------------------------------------------------
 
 class MongoAdapter implements IDatabaseAdapter {
   isMongo = true;
@@ -198,10 +178,6 @@ class MongoAdapter implements IDatabaseAdapter {
     await MongoConversationModel.deleteMany({ id: { $nin: presetIds } });
   }
 }
-
-// ----------------------------------------------------
-// File-based JSON Database Adapter Implementation (Fallback)
-// ----------------------------------------------------
 
 class LocalJSONAdapter implements IDatabaseAdapter {
   isMongo = false;
@@ -320,10 +296,6 @@ class LocalJSONAdapter implements IDatabaseAdapter {
   }
 }
 
-// ----------------------------------------------------
-// Database Manager - Connection & Fallback Orchestrator
-// ----------------------------------------------------
-
 let dbAdapter: IDatabaseAdapter;
 
 export async function connectDB(): Promise<IDatabaseAdapter> {
@@ -333,7 +305,6 @@ export async function connectDB(): Promise<IDatabaseAdapter> {
   
   try {
     console.log(`Connecting to MongoDB at ${mongoUri}...`);
-    // Connect with a 3-second timeout so we don't hang if Mongo isn't running
     await mongoose.connect(mongoUri, {
       serverSelectionTimeoutMS: 3000
     });
