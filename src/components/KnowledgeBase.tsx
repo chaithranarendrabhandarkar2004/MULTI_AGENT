@@ -26,8 +26,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchMethod, setSearchMethod] = useState('');
-  
-  // Custom upload states
   const [uploadMode, setUploadMode] = useState<'text' | 'file'>('file');
   const [newDocName, setNewDocName] = useState('');
   const [newDocContent, setNewDocContent] = useState('');
@@ -96,7 +94,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-fade-in">
-      {/* LEFT BLOCK: Loaded Files List (4/12 cols) */}
       <div className="lg:col-span-4 bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex flex-col h-[calc(100vh-180px)] overflow-hidden">
         <div className="flex items-center justify-between mb-4 shrink-0">
           <div>
@@ -111,7 +108,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
           </button>
         </div>
 
-        {/* List of indexed manual PDFs */}
         <div className="flex-1 overflow-y-auto space-y-2 pr-1">
           {files.map((file) => {
             const isSelected = selectedFile?.id === file.id;
@@ -150,10 +146,8 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
         </div>
       </div>
 
-      {/* RIGHT BLOCK: Dynamic Form or Chunk Reader (8/12 cols) */}
       <div className="lg:col-span-8 space-y-6 flex flex-col h-[calc(100vh-180px)] overflow-hidden">
         {showUploadForm ? (
-          /* Add File Form UI */
           <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex-1 overflow-y-auto">
             <h4 className="font-bold text-natural-900 text-sm mb-1">Index Custom Documents</h4>
             <p className="text-[10px] text-natural-600 mb-5">
@@ -168,7 +162,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
               </div>
             ) : (
               <div className="space-y-6">
-                {/* Mode Selector */}
                 <div className="flex bg-natural-100 p-1 rounded-xl border border-natural-200/50 w-max">
                   <button
                     type="button"
@@ -208,7 +201,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
                   </div>
 
                   {uploadMode === 'file' ? (
-                    /* PDF File Upload Input */
                     <div className="space-y-2">
                       <label className="text-[10px] text-natural-500 font-extrabold uppercase tracking-wider block">Document File (.pdf, .txt)</label>
                       <div className="border-2 border-dashed border-natural-200 hover:border-natural-400 rounded-2xl p-8 text-center cursor-pointer transition bg-natural-50 relative">
@@ -240,7 +232,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
                       </div>
                     </div>
                   ) : (
-                    /* Text Input Form */
                     <>
                       <div>
                         <label className="text-[10px] text-natural-500 font-extrabold uppercase tracking-wider block mb-1">File Name</label>
@@ -278,9 +269,7 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
             )}
           </div>
         ) : (
-          /* Main Chunk Reader & Vector Search sandbox */
           <div className="flex-1 flex flex-col gap-6 overflow-hidden">
-            {/* Top Widget: Vector Search Sandbox */}
             <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm shrink-0">
               <h4 className="font-bold text-natural-900 text-sm flex items-center gap-1">
                 <Database className="w-4 h-4 text-natural-500" />
@@ -310,7 +299,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
                 </button>
               </form>
 
-              {/* Vector Search Results list */}
               {searchResults.length > 0 && (
                 <div className="mt-4 border-t border-natural-200 pt-4 space-y-2">
                   <div className="flex justify-between items-center text-[9px] font-bold text-natural-500">
@@ -334,7 +322,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
               )}
             </div>
 
-            {/* Bottom Widget: Chunks Inspection of Selected File */}
             {selectedFile && (
               <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm flex-1 flex flex-col overflow-hidden">
                 <div className="flex items-center justify-between mb-3 border-b border-natural-200 pb-2.5 shrink-0">
@@ -350,7 +337,6 @@ export default function KnowledgeBase({ onAddDocument, files }: KnowledgeBasePro
                   </span>
                 </div>
 
-                {/* Slices scroll layout */}
                 <div className="flex-1 overflow-y-auto space-y-3 pr-1">
                   {selectedFile.content.split("\n- ").filter(p => p.trim().length > 0).map((para, idx) => (
                     <div key={idx} className="p-3.5 bg-natural-50 rounded-2xl border border-natural-200 flex gap-3 text-xs leading-relaxed text-natural-800">
