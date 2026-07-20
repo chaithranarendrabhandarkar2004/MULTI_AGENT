@@ -1,14 +1,10 @@
-/**
- * Shared Type Declarations for Multi-Agent AI Support & Dashboard
- */
-
 export interface Message {
   id: string;
   sender: 'user' | 'assistant' | 'system';
   text: string;
   timestamp: string;
-  rating?: number; // CSAT score 1-5
-  trace?: OrchestrationTrace; // Multi-Agent execution trace logs
+  rating?: number;
+  trace?: OrchestrationTrace;
 }
 
 export interface OrchestrationTrace {
@@ -16,11 +12,11 @@ export interface OrchestrationTrace {
   query: string;
   timestamp: string;
   sentiment: 'positive' | 'neutral' | 'negative';
-  sentimentScore: number; // -1 to 1
+  sentimentScore: number;
   detectedIntent: string;
   routedAgents: string[];
   retrievedChunks: RetrievedChunk[];
-  agentOutputs: Record<string, string>; // agentName -> raw response snippet
+  agentOutputs: Record<string, string>;
   finalResponse: string;
   tokensUsed?: number;
   responseTimeMs: number;
@@ -77,7 +73,7 @@ export interface AnalyticsSummary {
   resolvedConversations: number;
   escalatedConversations: number;
   averageResponseTimeMs: number;
-  averageCSAT: number; // 1 to 5
+  averageCSAT: number;
   sentimentTrends: {
     positive: number;
     neutral: number;
