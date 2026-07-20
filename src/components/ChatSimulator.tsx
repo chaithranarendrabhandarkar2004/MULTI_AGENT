@@ -41,20 +41,17 @@ export default function ChatSimulator({
   
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll to bottom
   useEffect(() => {
     chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  // Sync current query from dashboard click
   useEffect(() => {
     if (currentQuery) {
       setInputText(currentQuery);
       onResetQuery();
     }
   }, [currentQuery]);
-
-  // Sync the right trace console to the latest assistant message
+  
   useEffect(() => {
     const assistantMessages = messages.filter(m => m.sender === 'assistant' && m.trace);
     if (assistantMessages.length > 0) {
