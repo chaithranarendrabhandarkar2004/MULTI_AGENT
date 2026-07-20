@@ -28,7 +28,6 @@ export default function SimulationCenter({ onRunBatch, onResetAll, isSimulating 
     }, 3000);
   };
 
-  // Educational step details based on PDF curriculum modules
   const modules = [
     {
       step: "Module 1 & 2",
@@ -54,7 +53,6 @@ export default function SimulationCenter({ onRunBatch, onResetAll, isSimulating 
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
-      {/* Simulation Controls Dashboard Card */}
       <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-natural-200 pb-4 mb-4">
           <div>
@@ -84,7 +82,6 @@ export default function SimulationCenter({ onRunBatch, onResetAll, isSimulating 
           </div>
         </div>
 
-        {/* Detailed simulation running alerts */}
         {isSimulating && (
           <div className="p-4 bg-natural-100 border border-natural-300 text-natural-800 rounded-2xl text-xs space-y-2 animate-pulse">
             <div className="font-bold flex items-center gap-1.5 text-natural-900">
@@ -123,7 +120,6 @@ export default function SimulationCenter({ onRunBatch, onResetAll, isSimulating 
         </div>
       </div>
 
-      {/* Capstone Curriculum Reference Card */}
       <div className="bg-white p-6 rounded-[32px] border border-natural-200 shadow-sm space-y-4">
         <div>
           <h4 className="font-bold text-natural-900 text-sm">Capstone Implementation Modules</h4>
