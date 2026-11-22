@@ -282,6 +282,29 @@ The tests cover:
 
 🐙 GitHub: [@chaithranarendrabhandarkar2004](https://github.com/chaithranarendrabhandarkar2004)
 
+## 📸 Project Screenshots
+
+Explore the different sections of the Multi-Agent Customer Support Assistant.
+
+### 🔐 Sign In Page
+[![Sign In Page](screenshots/signin.png)](screenshots/signin.png)
+
+### 📊 Analytics Dashboard
+[![Analytics Dashboard](screenshots/analytics.png)](screenshots/analytics.png)
+
+[![Analytics Dashboard](screenshots/analytics.png)](screenshots/analytics1.png)
+
+### 💬 Support Chat Simulator
+[![Support Chat Simulator](screenshots/support-chat.png)](screenshots/support-chat.png)
+
+### 📚 Knowledge Base
+[![Knowledge Base](screenshots/knowledge-base.png)](screenshots/knowledge-base.png)
+
+### 🧪 Simulation Center
+[![Simulation Center](screenshots/simulation-center.png)](screenshots/simulation-center.png)
+
+*Click any screenshot to view it in full size.*
+
 ---
 
 ⭐ If you find this project interesting, consider giving the repository a star!
