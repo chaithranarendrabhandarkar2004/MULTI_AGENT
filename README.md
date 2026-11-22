@@ -1,132 +1,289 @@
-# Multi-Agent Customer Support Assistant using RAG
+# 🤖 Multi-Agent Customer Support Assistant using RAG
 
-A state-of-the-art customer support assistant leveraging Retrieval-Augmented Generation (RAG) and Gemini 3.5 AI orchestration to automatically route, analyze, retrieve, and synthesize responses for incoming queries.
+An AI-powered customer support assistant built using **Retrieval-Augmented Generation (RAG), Gemini AI, Node.js, Express, React, TypeScript, and MongoDB**.
 
----
+The application uses a multi-agent architecture to automatically classify incoming customer queries, retrieve relevant knowledge, route requests to specialized agents, and generate contextual responses.
 
-## 📖 Table of Contents
-1. [Key Features](#-key-features)
-2. [System Architecture](#-system-architecture)
-3. [REST API Documentation](#-rest-api-documentation)
-4. [Getting Started (Local Development)](#-getting-started-local-development)
-5. [Running with Docker Compose](#-running-with-docker-compose)
-6. [Running Automated Tests](#-running-automated-tests)
+It combines semantic vector search, document ingestion, AI orchestration, and persistent conversation management to create an intelligent customer support experience.
 
 ---
 
-## 🌟 Key Features
+## ✨ Key Features
 
-*   **Real PDF & TXT Ingestion**: Ingest and parse PDF/TXT manuals directly on the frontend using `multer` and `pdf-parse`.
-*   **Semantic Vector Store (Pure JS Cosine Similarity)**: Performs fast cosine similarity matching. Generated embeddings are mapped using Gemini's latest `text-embedding-004` model.
-*   **MongoDB & Mongoose Integration**: Persists users, knowledge documents, chunks, and conversation histories.
-*   **Automatic Local Fallback**: If a MongoDB database connection is not reachable, the server automatically falls back to an internal JSON-file database, guaranteeing 100% runtime reliability.
-*   **JWT User Authentication**: Sleek register/login mechanism securing all core agent orchestration endpoints.
-*   **Multi-Agent Decision Tree**: Routes queries dynamically to Billing, Tech Support, FAQ, Product, and Complaint agents. Resolves and compiles final answers via a response aggregator.
-*   **Fallback Rule Engine**: If the Gemini API key is missing or quota is exceeded, the server automatically falls back to rules-based keyword classification and semantic scoring.
+- 🤖 **Multi-Agent AI Orchestration:** Dynamically routes customer queries to specialized Billing, Tech Support, FAQ, Product, and Complaint agents.
+- 📚 **RAG-Based Knowledge Retrieval:** Retrieves relevant information from uploaded knowledge documents before generating responses.
+- 📄 **PDF & TXT Ingestion:** Uploads and processes PDF and TXT documents using Multer and pdf-parse.
+- 🔍 **Semantic Vector Search:** Uses cosine similarity to identify relevant document chunks.
+- 🧠 **Gemini Embeddings:** Generates document embeddings using Google's `text-embedding-004` model.
+- 🗄️ **MongoDB Integration:** Uses MongoDB and Mongoose to store users, knowledge documents, chunks, and conversation histories.
+- 🔄 **Local JSON Fallback:** Provides local JSON-file storage when MongoDB is unavailable.
+- 🔐 **JWT Authentication:** Provides registration, login, and protected API endpoints.
+- ⚙️ **Fallback Rule Engine:** Supports keyword-based classification and semantic scoring when Gemini is unavailable.
+- 📊 **Analytics Dashboard:** Displays customer satisfaction scores, sentiment trends, and agent distribution.
+- ⭐ **Customer Feedback:** Supports customer satisfaction ratings for conversations.
+
+---
+
+## 🛠️ Technologies & Tools Used
+
+| Technology | Purpose |
+|---|---|
+| ⚛️ React | Frontend user interface |
+| 📘 TypeScript | Type-safe development |
+| ⚡ Vite | Frontend development tooling |
+| 🟢 Node.js | Backend runtime |
+| 🚀 Express.js | REST API development |
+| 🧠 Google Gemini | AI orchestration and generation |
+| 🔍 RAG | Context-aware knowledge retrieval |
+| 📐 Cosine Similarity | Semantic vector matching |
+| 🗄️ MongoDB | Persistent database |
+| 🔗 Mongoose | MongoDB object modeling |
+| 🔐 JWT | Authentication |
+| 🐳 Docker | Containerization |
+| 🧪 Node.js Test Runner | Automated testing |
 
 ---
 
 ## 🏗️ System Architecture
 
+The application follows a multi-layer architecture consisting of a frontend, backend API, authentication middleware, knowledge retrieval system, database manager, and multi-agent orchestration pipeline.
+
+### 🔹 Architecture Workflow
+
 ```mermaid
 flowchart TD
-    User([User Client]) -->|React UI| Frontend[Vite Frontend]
-    Frontend -->|HTTP Requests with JWT| AuthMiddleware{JWT Auth Middleware}
-    AuthMiddleware -->|Protected Routes| ExpressServer[Express API Server]
-    
-    subgraph Core Backend
-        ExpressServer -->|Multer| PDFIngest[Real PDF Ingestion]
-        PDFIngest -->|pdf-parse| TextExtractor[Text Content Extractor]
-        TextExtractor -->|Chunking Engine| Chunker[Chunker]
-        
-        Chunker -->|Gemini Embeddings API| EmbedGen[Embedding Generator]
-        EmbedGen -->|text-embedding-004| VectorStore[Pure JS/TS Vector Store]
-        
-        ExpressServer -->|Mongoose / JSON Fallback| DBManager[Database Manager]
-        DBManager -->|Primary| MongoDB[(MongoDB Database)]
-        DBManager -->|Secondary Fallback| LocalJSON[(Local JSON Files)]
-    end
-    
-    subgraph Multi-Agent AI Pipeline
-        ExpressServer -->|RAG Retrieval| VectorStore
-        ExpressServer -->|Orchestrator| GeminiAPI[Gemini 3.5 Flash Model]
-    end
+    A[👤 User] --> B[⚛️ React Frontend]
+    B --> C[🔐 JWT Authentication]
+    C --> D[🚀 Express API Server]
+
+    D --> E[📄 Document Ingestion]
+    E --> F[📝 Text Extraction]
+    F --> G[✂️ Text Chunking]
+    G --> H[🧠 Gemini Embeddings]
+    H --> I[🔍 Vector Store]
+
+    D --> J[🤖 Multi-Agent Orchestrator]
+    I --> J
+
+    J --> K[💳 Billing Agent]
+    J --> L[🛠️ Tech Support Agent]
+    J --> M[❓ FAQ Agent]
+    J --> N[📦 Product Agent]
+    J --> O[📢 Complaint Agent]
+
+    K --> P[📊 Response Aggregator]
+    L --> P
+    M --> P
+    N --> P
+    O --> P
+
+    P --> Q[💬 Final Response]
+    Q --> B
+
+    D --> R[🗄️ Database Manager]
+    R --> S[(MongoDB)]
+    R --> T[(Local JSON Storage)]
 ```
+
+### 🔹 Core Architecture Components
+
+**1. Frontend Layer**
+- React-based user interface.
+- Vite development environment.
+- HTTP communication with backend APIs.
+
+**2. Backend Layer**
+- Express REST API.
+- JWT authentication middleware.
+- File upload and document processing.
+
+**3. Knowledge Retrieval Layer**
+- PDF and TXT text extraction.
+- Document chunking.
+- Gemini embedding generation.
+- Cosine similarity-based retrieval.
+
+**4. Multi-Agent Layer**
+- Query classification and routing.
+- Specialized customer support agents.
+- Response aggregation and synthesis.
+- Rule-based fallback mechanism.
+
+**5. Database Layer**
+- MongoDB with Mongoose.
+- Local JSON-file fallback storage.
 
 ---
 
 ## 📡 REST API Documentation
 
-### Public Endpoints
-*   `GET /api/health`: Health status check showing if Gemini is active.
-*   `POST /api/auth/register`: Create a new user credentials profile. Body: `{ "username": "...", "password": "..." }`
-*   `POST /api/auth/login`: Authenticate and sign a session token. Body: `{ "username": "...", "password": "..." }`
+### 🌐 Public Endpoints
 
-### Protected Endpoints (Requires `Authorization: Bearer <JWT_TOKEN>`)
-*   `GET /api/knowledge-base`: Fetch loaded documents and chunks sample.
-*   `POST /api/knowledge-base/upload`: Copy-paste raw text contents. Body: `{ "name": "...", "content": "...", "category": "..." }`
-*   `POST /api/knowledge-base/upload-file`: Upload PDF/TXT file as multipart/form-data with a `category` text field.
-*   `POST /api/knowledge-base/search`: Query the vector database sandbox. Body: `{ "query": "..." }`
-*   `GET /api/analytics`: Fetch metrics, CSAT scores, sentiment trends, and agent distribution.
-*   `POST /api/chat`: Process query through RAG and agent orchestration. Body: `{ "query": "..." }`
-*   `POST /api/chat/feedback`: Submit a CSAT star rating for a message. Body: `{ "conversationId": "...", "messageId": "...", "rating": 5 }`
-*   `POST /api/simulation/run`: Populate database with automated simulated conversations.
-*   `POST /api/simulation/reset`: Reset conversation history data to default preset records.
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/health` | Check application health and Gemini status |
+| POST | `/api/auth/register` | Register a new user |
+| POST | `/api/auth/login` | Authenticate a user and issue a JWT |
+
+### 🔐 Protected Endpoints
+
+These endpoints require an authorization header:
+
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/knowledge-base` | Retrieve knowledge documents and chunk samples |
+| POST | `/api/knowledge-base/upload` | Upload raw text content |
+| POST | `/api/knowledge-base/upload-file` | Upload PDF/TXT documents |
+| POST | `/api/knowledge-base/search` | Search the vector database |
+| GET | `/api/analytics` | Retrieve analytics and metrics |
+| POST | `/api/chat` | Process queries through RAG and agent orchestration |
+| POST | `/api/chat/feedback` | Submit customer satisfaction ratings |
+| POST | `/api/simulation/run` | Generate simulated conversations |
+| POST | `/api/simulation/reset` | Reset conversation history |
 
 ---
 
-## 🚀 Getting Started (Local Development)
+## ⚡ Installation & Setup
 
-### Prerequisites
-*   Node.js (v18+)
-*   MongoDB running locally on default port `27017` (Optional, as the application will automatically fall back to local JSON file storage if MongoDB is missing).
+### 📌 Prerequisites
 
-### Installation & Run
+Make sure you have installed:
 
-1.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-2.  **Configure Environment Variables**:
-    Create a `.env` file in the root directory:
-    ```env
-    GEMINI_API_KEY="your-gemini-api-key-here"
-    MONGO_URI="mongodb://localhost:27017/support_rag"
-    JWT_SECRET="a_secure_custom_secret_key"
-    ```
-3.  **Run in Dev Mode**:
-    ```bash
-    npm run dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) to see the dashboard.
-    *Note: A default administrator account `admin / admin123` is automatically seeded for easy initial login.*
+- Node.js (v18 or later)
+- npm
+- Git
+- Docker and Docker Compose (optional)
+- MongoDB (optional if using local JSON fallback)
+- Google Gemini API key
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/chaithranarendrabhandarkar2004/MULTI_AGENT.git
+
+cd MULTI_AGENT
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+MONGO_URI=mongodb://localhost:27017/support_rag
+JWT_SECRET=your_secure_random_secret
+```
+
+**Important:** Replace the example values with your own configuration. Never upload your actual `.env` file or API keys to GitHub.
+
+### 4️⃣ Start the Development Server
+
+```bash
+npm run dev
+```
+
+Open the application in your browser:
+
+```text
+http://localhost:3000
+```
 
 ---
 
 ## 🐳 Running with Docker Compose
 
-Ensure Docker and Docker Compose are installed on your host system:
+The project also supports containerized execution using Docker Compose.
 
-1.  **Configure environment values** in `.env` (ensure `GEMINI_API_KEY` is set).
-2.  **Spin up containers**:
-    ```bash
-    docker-compose up --build
-    ```
-    This builds the application container and launches a paired, volume-persisted MongoDB container.
-3.  **Access the application** at [http://localhost:3000](http://localhost:3000).
+### 1️⃣ Configure Environment Variables
+
+Make sure your `.env` file contains the required configuration.
+
+### 2️⃣ Build and Start Containers
+
+```bash
+docker-compose up --build
+```
+
+This builds the application container and starts the associated MongoDB service with persistent volume storage.
+
+### 3️⃣ Access the Application
+
+Open:
+
+```text
+http://localhost:3000
+```
 
 ---
 
 ## 🧪 Running Automated Tests
 
-Run the built-in Jest-like tests using Node's native test runner:
+Run the automated test suite using:
 
 ```bash
 npm run test
 ```
 
-This runs:
-*   Cosine similarity math verification.
-*   Bcrypt password hashing and validation checks.
-*   JWT token issuance and tampering security checks.
-*   Database adapter connectivity fallback tests.
+The tests cover:
+
+- 📐 Cosine similarity calculations.
+- 🔐 Bcrypt password hashing and validation.
+- 🎫 JWT token creation and tampering checks.
+- 🗄️ Database adapter connectivity and fallback behavior.
+
+---
+
+## 🔒 Security Considerations
+
+- Store API keys and secrets in environment variables.
+- Never commit `.env` files to GitHub.
+- Use strong, unique JWT secrets.
+- Change or remove any default development administrator credentials before deployment.
+- Use HTTPS and appropriate access controls in production.
+- Validate uploaded files and enforce suitable upload limits.
+
+---
+
+## ⚠️ Limitations
+
+- AI-generated responses may contain inaccurate information.
+- Retrieval quality depends on the quality and relevance of uploaded documents.
+- Gemini functionality depends on API availability and quota limits.
+- Local JSON fallback is intended for development and should be evaluated before production use.
+- Customer support responses should be reviewed appropriately before being used for important decisions.
+
+---
+
+## 🔮 Future Improvements
+
+- 📈 Improve agent routing and response evaluation.
+- 🧠 Explore advanced retrieval and reranking techniques.
+- 🔍 Add more detailed RAG evaluation metrics.
+- 💬 Improve conversation memory and contextual follow-ups.
+- 📊 Enhance analytics and reporting.
+- 🔐 Strengthen production authentication and authorization.
+- 🚀 Improve deployment and scalability.
+
+---
+
+## 👨‍💻 Author
+
+**Chaithra Narendra Bhandarkar**
+
+🐙 GitHub: [@chaithranarendrabhandarkar2004](https://github.com/chaithranarendrabhandarkar2004)
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
+
+**Built with ❤️ using AI, RAG, and Multi-Agent Architecture.**
