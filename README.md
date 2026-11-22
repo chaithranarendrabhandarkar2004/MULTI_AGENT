@@ -292,7 +292,7 @@ Explore the different sections of the Multi-Agent Customer Support Assistant.
 ### 📊 Analytics Dashboard
 [![Analytics Dashboard](screenshots/analytics.png)](screenshots/analytics.png)
 
-[![Analytics Dashboard](screenshots/analytics.png)](screenshots/analytics1.png)
+[![Analytics Dashboard](screenshots/analytics1.png)](screenshots/analytics1.png)
 
 ### 💬 Support Chat Simulator
 [![Support Chat Simulator](screenshots/support-chat.png)](screenshots/support-chat.png)
